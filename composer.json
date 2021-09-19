@@ -1,11 +1,11 @@
 {
-    "name": "spescina/timthumb",
+    "name": "bachnx/timthumb",
     "keywords": ["laravel", "image", "proxy", "resizer", "crop"],
     "description": "An image proxy for Laravel",
     "authors": [
         {
-            "name": "Simone Pescina",
-            "email": "s.pescina@gmail.com"
+            "name": "Bach Nguyen",
+            "email": "bachnx2303@gmail.com"
         }
     ],
     "license": "MIT",
