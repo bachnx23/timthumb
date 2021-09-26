@@ -21,9 +21,9 @@ If you want in `config/app.php` add the following line of code to the `alias` ar
 ```php
 'Timthumb' => 'Spescina\Timthumb\Facades\Timthumb'
 ```
-Then, publish the config files with `php artisan config:publish --provider="Spescina\Timthumb\TimthumbServiceProvider" --tag=config`.
+Then, publish the config files with `php artisan vendor:publish --provider="Spescina\Timthumb\TimthumbServiceProvider" --tag=config`.
 
-Then, publish the asset files with `php artisan asset:publish --provider="Spescina\Timthumb\TimthumbServiceProvider" --tag=public`.
+Then, publish the asset files with `php artisan vendor:publish --provider="Spescina\Timthumb\TimthumbServiceProvider" --tag=public`.
 
 ## Usage
 Generate the image link with the following line of code
