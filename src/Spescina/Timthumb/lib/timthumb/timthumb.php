@@ -283,6 +283,7 @@ class tt {
 		}
 	}
 	public function run(){
+		
 		if($this->isURL){
 			if(! ALLOW_EXTERNAL){
 				$this->debug(1, "Got a request for an external image but ALLOW_EXTERNAL is disabled so returning error msg.");
@@ -1233,8 +1234,9 @@ class tt {
 		if(! ($s && $s['mime'])){
 			return false;
 		}
+		$contentLength = $this->getHeaders($file, 'Content-Length');
 		header ('Content-Type: ' . $s['mime']);
-		header ('Content-Length: ' . filesize($file) );
+		header ('Content-Length: ' . $contentLength );
 		header ('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 		header ("Pragma: no-cache");
 		$bytes = @readfile($file);
@@ -1254,5 +1256,16 @@ class tt {
 	}
 	protected function is404(){
 		return $this->is404;
+	}
+	protected function getHeaders($file, $header) {
+		$retval = '';
+		$headers = get_headers($file);
+		foreach ($headers as $item) {
+			$extractHeaderKey = explode(':', $item);
+			if ($extractHeaderKey[0] == $header) {
+				$retval = trim($extractHeaderKey[1]);
+			}
+		}
+		return $retval;
 	}
 }
