@@ -1000,7 +1000,6 @@ class tt {
 			$this->error("Error reading the URL you specified from remote host." . $this->lastURLError);
 			return false;
 		}
-
 		$mimeType = $this->getMimeType($tempfile);
 		if(! preg_match("/^image\/(?:jpg|jpeg|gif|png)$/i", $mimeType)){
 			$this->debug(3, "Remote file has invalid mime type: $mimeType");
@@ -1145,7 +1144,7 @@ class tt {
 		return $this->error("There is a problem in the timthumb code. Message: Please report this error at <a href='http://code.google.com/p/timthumb/issues/list'>timthumb's bug tracking page</a>: $msg");
 	}
 	protected function getMimeType($file){
-		$info = getimagesize($file);
+		$info = @getimagesize($file);
 		if(is_array($info) && $info['mime']){
 			return $info['mime'];
 		}
@@ -1189,7 +1188,7 @@ class tt {
 			curl_setopt ($curl, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt ($curl, CURLOPT_HEADER, 0);
 			curl_setopt ($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-			curl_setopt ($curl, CURLOPT_WRITEFUNCTION, 'tt::curlWrite');
+			curl_setopt ($curl, CURLOPT_WRITEFUNCTION, 'self::curlWrite');
 			@curl_setopt ($curl, CURLOPT_FOLLOWLOCATION, true);
 			@curl_setopt ($curl, CURLOPT_MAXREDIRS, 10);
 
